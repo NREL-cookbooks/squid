@@ -29,12 +29,14 @@ default['squid']['version'] = '3.1'
 default['squid']['config_dir'] = '/etc/squid'
 default['squid']['config_file'] = '/etc/squid/squid.conf'
 default['squid']['log_dir'] = '/var/log/squid'
+default['squid']['lib_dir'] = '/usr/lib/squid3'
 default['squid']['cache_dir'] = '/var/spool/squid'
 default['squid']['coredump_dir'] = '/var/spool/squid'
 default['squid']['service_name'] = 'squid'
 
 default['squid']['listen_interface'] = 'eth0'
 default['squid']['cache_mem'] = '2048'
+
 
 case platform_family
 
@@ -82,3 +84,7 @@ when 'smartos'
   default['squid']['service_name'] = 'squid'
   default['squid']['listen_interface'] = 'net0'
 end
+
+default['squid']['basic_authentication'] = false
+default['squid']['auth_file_path'] = "#{node['squid']['config_dir']}/passwd"
+
