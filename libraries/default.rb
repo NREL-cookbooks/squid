@@ -2,9 +2,7 @@
 def squid_load_host_acl
   host_acl = []
   begin
-    Chef::Log.info "Looking for squid_hosts databag"
     data_bag('squid_hosts').each do |bag|
-      Chef::Log.info "inside each"
       group = data_bag_item('squid_hosts', bag)
       group['net'].each do |host|
         host_acl.push [group['id'], group['type'], host]
